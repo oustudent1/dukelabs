@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: dukelabs
+  name: dukelabs
+spec:
+  ports:
+  - port: 8080
+    targetPort: 8080
+  selector:
+    app: dukelabs
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: dukelabs
+  name: dukelabs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dukelabs
+  template:
+    metadata:
+      labels:
+        app: dukelabs
+    spec:
+      containers:
+      - image: oustudent1/dukelabs:atp
+        imagePullPolicy: IfNotPresent
+        name: dukelabs
+        volumeMounts:
+        - mountPath: /home/oracle/labs/dukelabs_wallet
+          name: wallet-config
+      volumes:
+      - name: wallet-config
+        configMap:
+           name: wallet
+

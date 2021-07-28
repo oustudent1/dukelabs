@@ -1,0 +1,12 @@
+#server:
+#  port: 8080
+#  host:  localhost
+javax:
+  sql:
+    DataSource:
+      dukeds:
+        dataSourceClassName: oracle.jdbc.pool.OracleDataSource
+        dataSource:
+          url: jdbc:oracle:thin:@dukelabsdb_tp?TNS_ADMIN=/home/oracle/labs/dukelabs_wallet
+          user: DUKE
+          password: "Machinee1Car001."
